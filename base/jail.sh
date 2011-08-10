@@ -32,10 +32,10 @@ FIFORUN="/tmp/fiforun$$"
 
 	exec <$FIFORUN >&${COPROC[1]}	\
 		$TIME -f "result $TIME_FORMAT"	\
-		$TIMEOUT $TIME_LIMIT	\
+		$TIMEOUT --signal=SIGKILL $TIME_LIMIT	\
 		$SU $RUN_USER \
 		$SU_SYNTAX $OUT
-#		$SU_SYNTAX "$OUT 2>/dev/null"
+#		$SU_SYNTAX "$OUT 2>/dev/null"				# FIXME
 }  2>&1
 
 rm -f $FIFORUN

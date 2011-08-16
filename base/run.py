@@ -22,17 +22,10 @@ import update
 SUBID = os.getenv("SUBID")
 LOGGER = os.getenv("LOGGER")
 JAILER = os.getenv("JAILER")
-INPUT_DIR = os.getenv("INPUT_DIR")
 
 def run (testnum, CONFIG):
-	TIMELIM = CONFIG[1]
-	MEMLIM = CONFIG[2]
-	INPUT_COMMAND = INPUT_DIR + '/' + CONFIG[3]
-
-	if (CONFIG[0] == 'normal'):
-		INPUT_COMMAND = 'cat ' + INPUT_COMMAND
-
-#	print JAILER + ' ' + str (testnum) + ' ' + str(TIMELIM) + ' ' + INPUT_COMMAND
+	[TIMELIM, MEMLIM] = CONFIG.get_limits(testnum)
+	INPUT_COMMAND = CONFIG.input_command(testnum)
 
 	update.status ('RUN', SUBID, -1, testnum)
 
@@ -54,30 +47,28 @@ def run (testnum, CONFIG):
 			mem = int (result[2])
 			ret = int (result[3])
 
-	if ret > 127:			status = 6 + retstat - 128	# signal
-	elif ret > 124:			status = 5					# unexpected
-	elif ret == 124:		status = 2					# time
-	elif ret != 0:			status = 4					# runtime
-	elif mem > MEMLIM:		status = 3					# memory
-	elif time > TIMELIM:	status = 2					# time
-	elif score <= 0:		status = 1					# wrong
-	else:					status = 0					# correct
+	if ret > 127:		status = 6 + ret - 128		# signal
+	elif ret > 124:		status = 5			# unexpected
+	elif ret == 124:	status = 2			# time
+	elif ret != 0:		status = 4			# runtime
+	elif mem > MEMLIM:	status = 3			# memory
+	elif time > TIMELIM:	status = 2			# time
+	elif score <= 0:	status = 1			# wrong
+	else:			status = 0			# correct
 
 	os.system(LOGGER + " LOG error {0} {1} {2} {3} {4} {5} {6}".format(SUBID, status, testnum, time, mem, ret, score))
 
-	error = update.status ('RUN', SUBID, status, testnum, time, mem, score)
+	error = update.status ('RUN', SUBID, status, testnum)
 
 	return [status, error]
 
-#strstat = [ 'Accepted!', 'Wrong answer', 'Time limit exceeded', 'Memory limit exceeded', 'Run time error', 'Unexpected error', 'Signal #' ]
-
-def main(COUNT, CONFIG):
+def main(CONFIG):
 	arr = []
-	for i in range(COUNT):
-		[status, error] = run (i, CONFIG[i])
+	for i in range(CONFIG.count):
+		[status, error] = run (i, CONFIG)
 		arr.append(status)
 		if error:
-			break
+			break;
 
 	update.status ('END', SUBID, status)
 

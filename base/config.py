@@ -19,24 +19,41 @@
 import os
 
 PROBCONFADDR = os.getenv('PROBCONFADDR')
+INPUT_DIR = os.getenv('INPUT_DIR')
+
+class Config:
+	def __init__(self, address):
+		self.data = []
+		self.address = address
+	
+	def parse(self):
+		PROBCONF = open (self.address, 'r')
+
+		self.count = int (PROBCONF.readline().strip())
+		CONFMOD = PROBCONF.readline().strip()
+
+		if CONFMOD == 'default':
+			confline = PROBCONF.readline().strip()
+			for i in range(self.count):
+				self.data.append (confline.replace ('%n', str(i)).split())
+		else:
+			for i in range(self.count):
+				confline = PROBCONF.readline()
+				self.data.append (confline.replace ('%n', str(i)).split())
+
+		PROBCONF.close()
+
+	def input_command(self, test):
+		input_command = INPUT_DIR + '/' + self.data[test][3];
+
+		if (self.data[test][0] == 'normal'):
+			input_command = 'cat ' + input_command
+		return input_command
+	
+	def get_limits(self, test):
+		return [int(self.data[test][1]), int(self.data[test][2])]
 
 def parse():
-	PROBCONF = open (PROBCONFADDR, 'r')
-
-	COUNT = int (PROBCONF.readline().strip())
-	CONFMOD = PROBCONF.readline().strip()
-
-	CONFIG = []
-
-	if CONFMOD == 'default':
-		confline = PROBCONF.readline().strip()
-		for i in range(COUNT):
-			CONFIG.append (confline.replace ('%n', str(i)).split())
-	else:
-		for i in range(COUNT):
-			confline = PROBCONF.readline()
-			CONFIG.append (confline.replace ('%n', str(i)).split())
-
-	PROBCONF.close()
-
-	return [COUNT, CONFIG]
+	CONFIG = Config (PROBCONFADDR)
+	CONFIG.parse()
+	return CONFIG

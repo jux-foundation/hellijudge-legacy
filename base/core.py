@@ -34,7 +34,7 @@ PROBLEM = os.getenv("PROBLEM")
 LANGUAGE = os.getenv('LANGUAGE')
 
 # Reading problem specific options from problem config
-[COUNT, CONFIG] = config.parse()
+CONFIG = config.parse()
 
 # Initializing log
 prefix = SUBID + ':' + USER + ':' + PROBLEM + ':' + LANGUAGE + ': '
@@ -54,7 +54,7 @@ elif compret:			# Unspecified Compilation error
 else:
 	# Start running
 	update.status ('RUN', SUBID, -1, -1);
-	arr = run.main (COUNT, CONFIG)
+	arr = run.main (CONFIG)
 
 	charstat = 'CWTMRU'	# [ correct, wrong, time, memory, runtime, unexpected ]
 

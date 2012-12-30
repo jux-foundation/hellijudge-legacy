@@ -1,27 +1,43 @@
-Core v0.4 (01-Jul-2011): (first public release)
-	- ?
+NOTE: HELLIJUDGE IS DEPRECATED AS OF November 22nd, 2012
 
-Core v0.5 (07-Jul-2011):
-	- ?
+Legacy v0.9 (30-Dec-2012):
+	- Added a brief installation guide in README along with etc config file samples.
+    - Added a couple of useful start and kill scripts in utils folder.
+    - Added two sample problems (one normal one interactive) along with
+	  testers in utils folder.
 
-Core v0.6 (08-Jul-2011):
-	- few changes in coding style
-	- now core.py reads problem config from file instead of stdin
+HELLIJUDGE DEPRECATED (22-Nov-2012)
 
-Core v0.7.rc1 (12-Jul-2011): (aka, idu)
-	- unite daemon and init.
+Core v0.8 (15-Aug-2011):
+    - major 'memnory and time limit casting' bug fixed
 
-Core v0.7.rc2 (12-Jul-2011): (aka, 2D)
-	- two different daemons: one for judging a code with 
-	  only one test case (call it A), and second one to judge all test cases 
-	  for a given code (call it B). note that B uses A for each test.
-
-Core v0.7.rc3 (12-Jul-2011):
-	- connecting core and update using a socket.
-
-Core v0.7.rc4 (12-Jul-2011): (chosen as v0.7)
-	- update.py reads contest configuration from mysql and according to it, 
-	  tells needed information to judge (eg. do break when a test fails or not)
+Core v0.71 (10-Aug-2011):
+    - minor 'timeout termination signal' bug fixed
 
 Core v0.7 (15-Jul-2011): (first stable release. git repo is now available)
-	- many minor bugs fixed
+    - many minor bugs fixed
+
+Core v0.7.rc4 (12-Jul-2011): (chosen as v0.7)
+    - update.py reads contest configuration from mysql and according to it,
+      tells needed information to judge (eg. do break when a test fails or not)
+
+Core v0.7.rc3 (12-Jul-2011):
+    - connecting core and update using a socket.
+
+Core v0.7.rc2 (12-Jul-2011): (aka, 2D)
+    - two different daemons: one for judging a code with
+      only one test case (call it A), and second one to judge all test cases
+      for a given code (call it B). note that B uses A for each test.
+
+Core v0.7.rc1 (12-Jul-2011): (aka, idu)
+    - unite daemon and init.
+
+Core v0.6 (08-Jul-2011):
+    - few changes in coding style
+    - now core.py reads problem config from file instead of stdin
+
+Core v0.5 (07-Jul-2011):
+    - ?
+
+Core v0.4 (01-Jul-2011): (first public release)
+    - ?

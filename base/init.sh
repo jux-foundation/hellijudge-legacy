@@ -30,7 +30,7 @@ fi
 sh $LOGGER LOG error "init started ..."
 
 # TODO seams buggy FIXME
-LOCK="/var/run/judgeinit.pid"
+LOCK="$JUDGE_PREFIX/judge.pid"
 while [ -e $LOCK ]
 do
 	LOCK_PID=`cat $LOCK`

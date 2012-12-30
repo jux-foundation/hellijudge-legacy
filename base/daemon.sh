@@ -17,7 +17,7 @@
 #	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 PID=$$
-LOCK="/var/run/judge.pid"
+LOCK="$JUDGE_PREFIX/judge.pid"
 
 echo $PID >$LOCK
 echo "Judge daemon started ... pid=$PID" >&2

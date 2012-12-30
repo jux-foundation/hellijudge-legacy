@@ -6,13 +6,40 @@
  	TO BE COMPLETED, asap!
 
  Install & Configuration
+	First, install Fedora Linux or something close!
+	Edit /etc files according to the ones is etc directory of judge. They
+	are the settings responsible for jailing and limitations.
+	Edit utils/setenv.sh and set your judge directory in it, then run it.
+
+	Now build a jail. You can find our prepared jail at:
+		https://github.com/jux-foundation/hellijudge-jail
+	or you can build your own, but remember to add compiler scripts from
+	our repo.
+
+	Based on your own configuration, do the following:
+		mkdir /mnt/jail/home
+		mkdir /mnt/jail/source
+		ln -s /mnt/jail $JUDGE_PREFIX/jail
+
+		mkdir /var/log/jury
+		ln -s /var/log/jury $JUDGE_PREFIX/log
+
+	Start the daemon, then run utils/hellow-tester.sh to test the judge.
+	Run utils/bs-tester.sh to test the interactive feature.
+
+	If anything didn't workout, don't worry! I'd be surprised if it did!
+	Contact me at dinovirus [@] NOSPAM [.] gmail [.] com
+
  	TO BE COMPLETED, asap!
 
  Documentation
+	Start: run utils/daemon.sh
+	Kill: run utils/jfsck.sh
+
  	TO BE COMPLETED, asap!
 
  License
-	Copyright (C) 2011   Hamed Saleh & Mahrud Sayrafi
+	Copyright (C) 2011-`date +%Y`   Hamed Saleh & Mahrud Sayrafi
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -25,5 +52,5 @@
 	GNU General Public License for more details.
 
  Authors & Contact information
- 	Hamed Saleh <hameelas@gmail.com.NOSPAM>
-	Mahrud Sayrafi <sayrafi.m@gmail.com.NOSPAM>
+ 	Hamed Saleh <hameelas [@] NOSPAM [.] gmail [.] com>
+	Mahrud Sayrafi <sayrafi.m [@] NOSPAM [.] gmail [.] com>

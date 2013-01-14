@@ -16,19 +16,19 @@
 	or you can build your own, but remember to add compiler scripts from
 	our repo.
 
-	Based on your own configuration, do the following:
+/*	Based on your own configuration, do the following:
 		mkdir /mnt/jail/home
 		mkdir /mnt/jail/source
 		ln -s /mnt/jail $JUDGE_PREFIX/jail
 
 		mkdir /var/log/jury
 		ln -s /var/log/jury $JUDGE_PREFIX/log
-
+*/
 	Start the daemon, then run utils/hellow-tester.sh to test the judge.
 	Run utils/bs-tester.sh to test the interactive feature.
 
 	If anything didn't workout, don't worry! I'd be surprised if it did!
-	Contact me at dinovirus [@] NOSPAM [.] gmail [.] com
+	Contact me at dinovirus [+] NOSPAM [@] gmail [.] com
 
  	TO BE COMPLETED, asap!
 
@@ -52,5 +52,5 @@
 	GNU General Public License for more details.
 
  Authors & Contact information
- 	Hamed Saleh <hameelas [@] NOSPAM [.] gmail [.] com>
-	Mahrud Sayrafi <sayrafi.m [@] NOSPAM [.] gmail [.] com>
+ 	Hamed Saleh <hameelas [+] NOSPAM [@] gmail [.] com>
+	Mahrud Sayrafi <sayrafi.m [+] NOSPAM [@] gmail [.] com>

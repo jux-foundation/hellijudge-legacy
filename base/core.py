@@ -66,4 +66,5 @@ else:
 
 os.system (LOGGER + ' LOG grading ' + prefix + logmsg)
 
-update.conn.close()
+if HOST != "":
+	update.conn.close()

@@ -24,7 +24,8 @@ USER = os.getenv("DB_USERNAME")
 PASS = os.getenv("DB_PASSWORD")
 NAME = os.getenv("DB_NAME")
 
-conn = MySQLdb.connection (host=HOST, user=USER, passwd=PASS, db=NAME)
+if HOST != "":
+	conn = MySQLdb.connection (host=HOST, user=USER, passwd=PASS, db=NAME)
 
 strstat = [ 'Accepted!', 'Wrong answer', 'Time limit exceeded', 'Memory limit exceeded',
 		'Run time error', 'Unexpected error', 'Signal #' ]
@@ -40,7 +41,8 @@ def status (query, SUBID, status, test = -1, time = -1, mem = -1, score = -1):
 		else:
 			msg = 'compilation error'
 
-		conn.query ("""UPDATE `submitions` 
+		if HOST != "":
+			conn.query ("""UPDATE `submissions` 
 						SET status='{MSG}' WHERE id='{SUBID}'""".format (MSG = msg, SUBID = SUBID))
 
 	elif query == 'RUN':
@@ -52,7 +54,7 @@ def status (query, SUBID, status, test = -1, time = -1, mem = -1, score = -1):
 		else:
 			msg = 'running on test ' + str (test + 1)
 
-		conn.query ("UPDATE `submitions` SET status='{MSG}' WHERE id='{SUBID}'".format (MSG = msg, SUBID = SUBID))
+		conn.query ("UPDATE `submissions` SET status='{MSG}' WHERE id='{SUBID}'".format (MSG = msg, SUBID = SUBID))
 		
 		return status > 0
 
@@ -68,5 +70,6 @@ def status (query, SUBID, status, test = -1, time = -1, mem = -1, score = -1):
 		if status > 0:
 			msg += ' on test ' + str (test + 1)
 
-		conn.query ("""UPDATE `submitions` 
+		if HOST != "":
+			conn.query ("""UPDATE `submissions` 
 						SET status='{MSG}' WHERE id='{SUBID}'""".format (MSG = msg, SUBID = SUBID))

@@ -6,7 +6,7 @@
  	TO BE COMPLETED, asap!
 
  Install & Configuration
-	First, install Fedora Linux or something close!
+	First, install Fedora Linux or something similar!
 	Edit /etc files according to the ones is etc directory of judge. They
 	are the settings responsible for jailing and limitations.
 	Edit utils/setenv.sh and set your judge directory in it, then run it.

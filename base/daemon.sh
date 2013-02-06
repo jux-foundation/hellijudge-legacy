@@ -58,7 +58,8 @@ export LOG_DATE_FORMAT="--rfc-3339=ns"
 
 export TIME_FORMAT='%e %M %x'
 
-export DB_HOST='127.0.0.1'
+# Uncomment the following line to enable MySQL updating:
+#export DB_HOST='127.0.0.1'
 export DB_USERNAME=''
 export DB_PASSWORD=''
 export DB_NAME=''
@@ -69,8 +70,7 @@ FIFO="/tmp/fifo$PID"
 rm -f /tmp/fifo*
 mkfifo $FIFO
 
-trap "{ killall -9 nc init.sh daemon.sh
-		rm -f $FIFO $LOCK;	}" EXIT
+trap "{ $JUDGE/utils/jfsck.sh;	}" EXIT
 
 while true
 do
